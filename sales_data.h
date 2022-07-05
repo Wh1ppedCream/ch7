@@ -28,6 +28,7 @@ struct Sales_data {
 
 
 	//member function in class type
+	double avg_price() const;
 	std::string isbn() const {
 		return bookNo;
 	};
@@ -45,6 +46,11 @@ Sales_data& Sales_data::combine(const Sales_data& rhs) {
 	units_sold += rhs.units_sold;
 	revenue += rhs.revenue;
 	return *this;
+}
+
+inline double Sales_data::avg_price() const
+{
+	return ((units_sold == 0) ? 0 : revenue / units_sold);
 }
 
 //class-related non-member functions:
