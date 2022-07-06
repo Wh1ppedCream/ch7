@@ -3,7 +3,17 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
+class Screen;
+
+class Window_mgr {
+	public:
+		using ScreenIndex = std::vector<Screen>::size_type;
+		void clear(ScreenIndex);
+	private:
+		std::vector<Screen> screens;
+};
 
 class Screen {
 	public:
@@ -15,6 +25,9 @@ class Screen {
 		Screen(pos ht, pos wd) : height(ht), width(wd), contents(ht * wd, ' ') { }
 		Screen(pos ht, pos wd, char c) : height(ht), width(wd), contents(ht * wd, c) { }
 		
+
+		//friend functions
+		friend void Window_mgr::clear(ScreenIndex);
 
 		//member functions
 		char get() const              // gets character at cursor
@@ -52,6 +65,11 @@ class Screen {
     		pos height = 0, width = 0;
     		std::string contents;
 };
+
+void Window_mgr::clear(Window_mgr::ScreenIndex ind) {
+	Screen &s = screens[ind];
+	s.contents = std::string(s.height * s.width, ' ');
+}
 
 inline
 // we can specify inline on the definition
