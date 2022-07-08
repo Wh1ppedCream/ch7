@@ -29,7 +29,7 @@ class Person {
 	//data:
 	std::string name;
 	std::string address;
-}
+};
 
 std::istream& read(std::istream& is, Person &per) {
 	is >> per.name >> per.address;
@@ -38,5 +38,6 @@ std::istream& read(std::istream& is, Person &per) {
 
 std::ostream& print(std::ostream& os,const Person &pir) {
 	os << pir.name << " " << pir.address;
-	return os
+	return os;
 }
+
