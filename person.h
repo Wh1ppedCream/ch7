@@ -13,7 +13,7 @@ class Person {
 	Person(const std::string &str) : name(str) { };
 	Person() : default;
 	Person(const std::string &str1, const std::string &str2) : name(str1), address(str2) { };
-	Person(std::istream &is) {
+	explicit Person(std::istream &is) {
 		read(is, *this);
 	}
 
